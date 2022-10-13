@@ -1,20 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/fa9566509/POSBackEnd/pkg/routes"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	fmt.Println("Hello World!")
-	r := gin.Default()
-	r.GET("/ping", 
-		func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-			"messsage": "pong",
-		})
-	})
-	r.Run()
+	app := fiber.New()
+	routes.RegisterCustomerRoutes(app)
+	app.Listen(":3000")
 }
