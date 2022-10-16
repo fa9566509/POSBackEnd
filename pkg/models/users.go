@@ -1,5 +1,7 @@
 package models
 
+import "github.com/fa9566509/POSBackEnd/pkg/config"
+
 type Users struct {
 	UserName   string
 	Password   string
@@ -11,4 +13,10 @@ type Users struct {
 	City       string
 	State      string
 	Country    string
+}
+
+func init() {
+	d, _ := config.Connect()
+	db = d
+	db.AutoMigrate(&Users{})
 }

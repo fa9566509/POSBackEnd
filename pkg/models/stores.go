@@ -1,5 +1,7 @@
 package models
 
+import "github.com/fa9566509/POSBackEnd/pkg/config"
+
 type Stores struct {
 	StoreName string
 	Street    string
@@ -9,4 +11,10 @@ type Stores struct {
 	PhoneNo   string
 	Email     string
 	Website   string
+}
+
+func init() {
+	d, _ := config.Connect()
+	db = d
+	db.AutoMigrate(&Stores{})
 }
