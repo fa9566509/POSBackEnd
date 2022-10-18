@@ -29,7 +29,7 @@ func GetAllStores() (stores []Stores) {
 }
 
 func (store Stores)CreateStore() Stores {
-	db.Create(store)
+	db.Create(&store)
 	return store
 }
 

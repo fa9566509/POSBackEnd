@@ -26,7 +26,7 @@ func GetAllStocks() (stocks []Stock) {
 
 // POST
 func (stock Stock)CreateSock() Stock {
-	db.Create(stock)
+	db.Create(&stock)
 	return stock
 }
 

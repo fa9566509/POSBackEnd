@@ -25,7 +25,7 @@ func GetAllRoles() (roles []Roles) {
 
 // POST
 func (role Roles)CreateRole() Roles {
-	db.Create(role)
+	db.Create(&role)
 	return role
 }
 

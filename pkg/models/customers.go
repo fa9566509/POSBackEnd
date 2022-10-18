@@ -31,7 +31,7 @@ func GetAllCustomers() (customers []Customers) {
 }
 
 func (customer Customers)CreateCustomer() Customers {
-	db.Create(customer)
+	db.Create(&customer)
 	return customer
 }
 

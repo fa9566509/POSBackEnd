@@ -30,7 +30,7 @@ func GetAllProducts() (products []Products) {
 
 // POST
 func (product Products)CreateProduct() Products {
-	db.Create(product)
+	db.Create(&product)
 	return product
 }
 

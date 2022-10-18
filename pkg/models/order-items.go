@@ -28,7 +28,7 @@ func GetAllOrdersItems() (orderItems []OrderItems) {
 
 // POST
 func (orderItem OrderItems)CreateOrderItem() OrderItems {
-	db.Create(orderItem)
+	db.Create(&orderItem)
 	return orderItem
 }
 

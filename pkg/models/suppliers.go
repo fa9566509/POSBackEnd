@@ -29,7 +29,7 @@ func GetAllSuppliers() (suppliers []Suppliers) {
 }
 
 func (supplier Suppliers)CreateSupplier() Suppliers {
-	db.Create(supplier)
+	db.Create(&supplier)
 	return supplier
 }
 

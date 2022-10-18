@@ -21,7 +21,7 @@ func GetAllCateories() (categories []Categories) {
 	return categories
 }
 
-func CreateCategory(category Categories) Categories {
+func (category Categories) CreateCategory() Categories {
 	db.Create(&category)
 	return category
 }

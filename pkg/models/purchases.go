@@ -25,7 +25,7 @@ func GetAllPurchases() (purchases []Purchases) {
 
 // POST
 func (purchase Purchases)CreatePurchase() Purchases {
-	db.Create(purchase)
+	db.Create(&purchase)
 	return purchase
 }
 

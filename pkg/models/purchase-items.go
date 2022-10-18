@@ -29,7 +29,7 @@ func GetAllPurchaseItems() (purchaseItems []PurchaseItems) {
 
 // POST
 func (purchaseItem PurchaseItems)CreatePurchaseItem() PurchaseItems {
-	db.Create(purchaseItem)
+	db.Create(&purchaseItem)
 	return purchaseItem
 }
 
