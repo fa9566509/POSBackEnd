@@ -39,3 +39,8 @@ func DeleteStock(ID int64) (stock Stock) {
 	db.Where("ID = ?", ID).Delete(&stock)
 	return stock
 }
+
+func (stock Stock) UpdateStock(ID int64) (oldStock Stock) {
+	db.Where("ID = ?", ID).Model(&oldStock).Updates(&stock)
+	return stock
+}

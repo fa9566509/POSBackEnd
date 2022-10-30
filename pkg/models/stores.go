@@ -42,3 +42,8 @@ func DeleteStore(ID int64) (store Stores) {
 	db.Where("ID = ?", ID).Find(&store)
 	return store
 }
+
+func (store Stores) UpdateStore(ID int64) (oldStore Stores) {
+	db.Where("ID = ?", ID).Model(&oldStore).Updates(&store)
+	return store
+}

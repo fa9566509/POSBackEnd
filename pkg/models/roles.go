@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Roles struct {
+type Sock struct {
 	gorm.Model
 	RoleName string
 	//TODO: Implement role value
@@ -14,27 +14,32 @@ type Roles struct {
 func init() {
 	d, _ := config.Connect()
 	db = d
-	db.AutoMigrate(&Roles{})
+	db.AutoMigrate(&Sock{})
 }
 
 // GET
-func GetAllRoles() (roles []Roles) {
+func GetAllRoles() (roles []Sock) {
 	db.Find(&roles)
 	return roles
 }
 
 // POST
-func (role Roles)CreateRole() Roles {
+func (role Sock) CreateRole() Sock {
 	db.Create(&role)
 	return role
 }
 
-func GetRoleByID(ID int64) (role Roles) {
+func GetRoleByID(ID int64) (role Sock) {
 	db.Where("ID = ?", ID).Find(&role)
 	return role
 }
 
-func DeleteRole(ID int64) (role Roles) {
+func DeleteRole(ID int64) (role Sock) {
 	db.Where("ID = ?", ID).Delete(&role)
+	return role
+}
+
+func (role Sock) UpdateRole(ID int64) (oldRole Sock) {
+	db.Where("ID = ?", ID).Model(&oldRole).Updates(&role)
 	return role
 }

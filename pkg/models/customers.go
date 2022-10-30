@@ -3,7 +3,6 @@ package models
 import (
 	"github.com/fa9566509/POSBackEnd/pkg/config"
 	"gorm.io/gorm"
-	//"gorm.io/gorm"
 )
 
 type Customers struct {
@@ -44,4 +43,9 @@ func DeleteCustomer(ID int64) Customers {
 	customer := Customers{}
 	db.Where("ID = ?", ID).Delete(&customer)
 	return customer
+}
+
+func (newCustomer Customers)UpdateCustomer(ID int64) (oldCustomer Customers) {
+	db.Where("ID = ?", ID).Model(&oldCustomer).Updates(&newCustomer)
+	return newCustomer
 }

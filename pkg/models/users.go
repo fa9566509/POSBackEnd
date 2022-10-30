@@ -54,3 +54,5 @@ func (newUser Users)UpdateUser(ID int64) (oldUser Users) {
 	db.Where("ID = ?", ID).Model(&oldUser).Updates(&newUser)
 	return newUser
 }
+
+

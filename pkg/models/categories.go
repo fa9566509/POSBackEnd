@@ -36,3 +36,9 @@ func DeleteCategory(ID int64) Categories {
 	db.Where("ID = ?", ID).Delete(&category)
 	return category
 }
+
+
+func (newCategory Categories)UpdateCategory(ID int64) (oldCategory Categories) {
+	db.Where("ID = ?", ID).Model(&oldCategory).Updates(&newCategory)
+	return newCategory
+}

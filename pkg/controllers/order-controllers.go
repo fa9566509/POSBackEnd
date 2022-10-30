@@ -12,9 +12,13 @@ import (
 func GetAllOrders(ctx *fiber.Ctx) error {
 	orders := models.GetAllOrders()
 	o, err := json.Marshal(orders)
+	if err != nil {
+		fmt.Println("Error while encding json [Func: GetAllOrders()]")
+		return err
+	}
 	ctx.Response().Header.Add("Content-Type", "application/json")
 	ctx.Write(o)
-	return err
+	return nil
 }
 
 func CreateOrder(ctx *fiber.Ctx) error {
@@ -53,5 +57,24 @@ func DeleteOrder(ctx *fiber.Ctx) error {
 	}
 	ctx.Response().Header.Add("Content-Type", "application/json")
 	ctx.Write(o)
+	return nil
+}
+
+func UpdateOrder(ctx *fiber.Ctx) error {
+	sid := ctx.Params("ID")
+	id, err := strconv.ParseInt(sid, 0,0)
+	if err != nil {
+		fmt.Println("Error while parsing ID [Func: UpdateCustomer()]")
+		return err
+	}
+	order := models.Orders{}
+	res := order.UpdateOrder(id)
+	resOrder, err := json.Marshal(res)
+	if err != nil {
+		fmt.Println("Error while encoding to json [Fucn: UpdateCustomer()]")
+		return err
+	}
+	ctx.Response().Header.Add("Content-Type", "application/json")
+	ctx.Write(resOrder)
 	return nil
 }

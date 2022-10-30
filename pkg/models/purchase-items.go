@@ -42,3 +42,8 @@ func DeletePurchaseItem(ID int64) (purchaseItem PurchaseItems) {
 	db.Where("ID = ?", ID).Delete(&purchaseItem)
 	return purchaseItem
 }
+
+func (purchaseItem PurchaseItems) UpdatePurchaseItem(ID int64) (oldPurchaseItem PurchaseItems) {
+	db.Where("ID = ?", ID).Model(&oldPurchaseItem).Updates(&purchaseItem)
+	return purchaseItem
+}

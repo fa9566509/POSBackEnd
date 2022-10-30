@@ -43,3 +43,8 @@ func DeleteProduct(ID int64) (product Products) {
 	db.Where("ID = ?", ID).Delete(&product)
 	return product
 }
+
+func (product Products) UpdateProduct(ID int64) (oldProduct Products) {
+	db.Where("ID = ?", ID).Model(&oldProduct).Updates(&product)
+	return product
+}

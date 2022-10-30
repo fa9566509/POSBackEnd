@@ -42,3 +42,8 @@ func DeleteSupplier(ID int64) (supplier Suppliers) {
 	db.Where("ID = ?", ID).Delete(&supplier)
 	return supplier
 }
+
+func (supplier Suppliers) UpdateSupplier(ID int64) (oldSupplier Suppliers) {
+	db.Where("ID = ?", ID).Model(&oldSupplier).Updates(&supplier)
+	return supplier
+}

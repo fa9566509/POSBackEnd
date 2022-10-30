@@ -32,3 +32,7 @@ func GetListner() net.Listener {
 
 	return ln
 }
+
+// func ParseConfigJson() models.Configuration {
+// 	configFile, err := json.Unmarshal("", )
+// }

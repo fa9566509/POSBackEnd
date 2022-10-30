@@ -7,11 +7,12 @@ import (
 
 type OrderItems struct {
 	gorm.Model
-	OrderStatus string
-	TotalPrice  float64
-	Discount    float32
-	Quantity    int
-	LineNo      int
+	OrderStatus string  `json:"OrderStatus"`
+	TotalPrice  float64 `json:"TotalPrice"`
+	Discount    float32 `json:"Discount"`
+	Quantity    int     `json:"Quantity"`
+	LineNo      int     `json:"LineNo"`
+	OrdersID    uint    `json:"OrderID"`
 }
 
 func init() {
@@ -27,7 +28,7 @@ func GetAllOrdersItems() (orderItems []OrderItems) {
 }
 
 // POST
-func (orderItem OrderItems)CreateOrderItem() OrderItems {
+func (orderItem OrderItems) CreateOrderItem() OrderItems {
 	db.Create(&orderItem)
 	return orderItem
 }
@@ -39,5 +40,10 @@ func GetOrderItemByID(ID int64) (orderItem OrderItems) {
 
 func DeleteOrderItem(ID int64) (orderItem OrderItems) {
 	db.Where("ID = ?", ID).Delete(&orderItem)
+	return orderItem
+}
+
+func (orderItem OrderItems) UpdateOrderItem(ID int64) (oldOrderItem OrderItems) {
+	db.Where("ID = ?", ID).Model(&oldOrderItem).Updates(&orderItem)
 	return orderItem
 }
